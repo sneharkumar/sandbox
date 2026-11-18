@@ -26,7 +26,14 @@
         <h3>Contact Me</h3>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
-        <button type="submit">Submit Form</button>
+        <button type="submit" onclick="window.datalayer.push({
+            'event': 'contact_form',
+            'form_metadata': {
+                'form_id': 'contact_form',
+                'form_category': 'contact_page',
+                'user_tier': 'premium_lead'
+            }
+        });">Submit Form</button>
     </form>
 </body>
 </html>
