@@ -90,5 +90,40 @@
             }
         });">Submit Form</button>
     </form>
+
+     <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Stops page redirects completely
+        
+        var emailInput = document.getElementById('email').value;
+        
+        // PASTE THE LONG GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE SINGLE QUOTES BELOW:
+        var scriptUrl = 'https://script.google.com/macros/s/AKfycbzF6_hzsCfhor3qw9aT-GWcKi6BewcmHS2g9hA64qKUA-WZqskXGgMTmOYNqnR5lZrpcQ/exec';
+        
+        // 1. Send data silently to your Google Sheet spreadsheet
+        fetch(scriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailInput })
+        });
+        
+        // 2. Instantly push a custom event to Google Tag Manager
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'custom_form_submit',
+            'form_id': 'contact-form'
+        });
+        
+        // 3. Swap the form out for a beautiful success message right on the page
+        document.getElementById('form-container').innerHTML = `
+            <div style="padding: 20px; background: #e6fffa; border: 1px solid #319795; color: #234e52; border-radius: 6px; text-align: center;">
+                <h3>🎉 Thank You!</h3>
+                <p style="margin:0;">Your email has been saved directly to our spreadsheet database.</p>
+            </div>
+        `;
+    });
+    </script>
+    
 </body>
 </html>
