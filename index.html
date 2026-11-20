@@ -55,11 +55,14 @@
 </head>
 
 <body>
-<script>
+    
+<!-- We don't need this manual snippet as there is a dedicated GTM script -->
+<!-- <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-</script>
+</script>    -->
+    
     <h1>Analytics Testing Sandbox</h1>
     <p>A hands-on project where I practice website analytics, event tracking, and conversion measurement using Google Analytics 4 and Google Tag Manager. </p>
     <h4>Tracking and Measurement: </h4> 
@@ -81,14 +84,19 @@
         <h4>Let's Connect</h4>
        <!-- <label for="email">Email:</label><br> -->
         <input type="email" id="email" name="email" placeholder="Enter your email address" required><br><br>
-        <button type="submit" onclick="window.datalayer.push({
+       
+      <!-- The custom script at the bottom already handles capturing the form entry and pushes a matching custom_form_submit directly to GTM. -->
+        <!-- <button type="submit" onclick="window.datalayer.push({
             'event': 'contact_form',
             'form_metadata': {
                 'form_id': 'contact_form',
                 'form_category': 'contact_page',
                 'user_tier': 'premium_lead'
             }
-        });">Submit Form</button>
+        });">Submit Form</button> -->
+
+        <button type="submit">Submit Form </button>
+        
     </form>
 
      <script>
@@ -97,7 +105,7 @@
         
         var emailInput = document.getElementById('email').value;
         
-        // PASTE THE LONG GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE SINGLE QUOTES BELOW:
+        // PASTING THE GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE SINGLE QUOTES BELOW:
         var scriptUrl = 'https://script.google.com/macros/s/AKfycbzF6_hzsCfhor3qw9aT-GWcKi6BewcmHS2g9hA64qKUA-WZqskXGgMTmOYNqnR5lZrpcQ/exec';
         
         // 1. Send data silently to your Google Sheet spreadsheet
